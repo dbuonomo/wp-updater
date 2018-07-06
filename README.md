@@ -4,3 +4,5 @@ A shell script to update Wordpress core to the latest version. This follows manu
 https://codex.wordpress.org/Upgrading_WordPress
 
 Note: do not run this script without first making a full backup of your Wordpress site and related database.
+
+Plugins are not updates, but this may be added in the future.
