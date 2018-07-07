@@ -31,7 +31,7 @@ nver="`grep '^\$wp_version' download/wordpress/wp-includes/version.php | grep -o
 
 read -p "Wordpress will be updated from v$cver to v$nver. Do you wish to continue (y/n)? " input
 case $input in
-    [Yy]* ) make install; break;;
+    [Yy]* ) break;;
     [Nn]* ) exit;;
     * ) echo "Invalid input, aborting.";;
 esac
