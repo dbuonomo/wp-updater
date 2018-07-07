@@ -1,11 +1,22 @@
 #!/bin/sh
 
+read -p "Backup your Wordpress site before proceeding! Do you wish to continue (y/n)? " input
+case $input in
+    [Yy]* ) break;;
+    [Nn]* ) exit;;
+    * ) echo "Invalid input, aborting.";;
+esac
+
 file="/etc/apache2/sites-available/$1.conf"
-if [ -f "$file" ]
+if [ ! -f "$file" ]
 then
-    echo "$file found."
-else
     echo "$file not found."
+    echo "Update aborted."
+    exit 1
+fi
+
+if [ ! -d "wp_includes" ]; then
+    echo This doesn\'t appear to be a Wordpress root directory.
     echo "Update aborted."
     exit 1
 fi
@@ -44,5 +55,6 @@ service apache2 reload
 echo 'Cleanup...'
 rm -rf latest.zip download/wordpress
 
+echo wp-config.php not updated. You must manually diff and merge any new changes from wp-config-sample.php.
 echo Update complete.
 exit 0
