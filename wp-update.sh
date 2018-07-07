@@ -15,7 +15,7 @@ then
     exit 1
 fi
 
-if [ ! -d "wp_includes" ]; then
+if [ ! -d "wp-includes" ]; then
     echo This doesn\'t appear to be a Wordpress root directory.
     echo "Update aborted."
     exit 1
