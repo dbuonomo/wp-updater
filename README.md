@@ -5,6 +5,8 @@ https://codex.wordpress.org/Upgrading_WordPress
 
 Note: do not run this script without first making a full backup of your Wordpress site and related database.
 
+Run this script from your Wordpress root directory.
+
 A few notes on this script:
 
 * This script must be run with sufficient privileges to delete and overrite some Wordpress files/directories
