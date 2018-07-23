@@ -7,8 +7,8 @@ Note: do not run this script without first making a full backup of your Wordpres
 
 ## How-to
 
-Create a full backup of your Wordpress site (all files/folders and the database)
-Upload and run this script from your Wordpress root directory:
+* Create a full backup of your Wordpress site (all files/folders and the database)
+* Upload and run this script from your Wordpress root directory:
 
 sh wp-update.sh
 
