@@ -26,8 +26,8 @@ wget -q https://wordpress.org/latest.zip
 mkdir -p download
 unzip -qq latest.zip -d download
 
-cver="`grep '^\$wp_version' wp-includes/version.php | grep -o '[0-9]\.*[0-9]\.*[0-9]'`"
-nver="`grep '^\$wp_version' download/wordpress/wp-includes/version.php | grep -o '[0-9]\.*[0-9]\.*[0-9]'`"
+cver=`grep '^\$wp_version' wp-includes/version.php | sed "s/^.*'\(.*\)'.*$/\1/"`
+nver=`grep '^\$wp_version' download/wordpress/wp-includes/version.php | sed "s/^.*'\(.*\)'.*$/\1/"`
 
 read -p "Wordpress will be updated from v$cver to v$nver. Do you wish to continue (y/n)? " input
 case $input in
