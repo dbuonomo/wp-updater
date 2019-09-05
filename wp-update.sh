@@ -41,7 +41,7 @@ sleep 5
 
 echo Disabling $1...
 sleep 2
-a2dissite -q $1.conf
+a2dissite -q $1
 service apache2 reload
 
 rm -rf wp-admin wp-includes
@@ -49,7 +49,7 @@ cp -rf download/wordpress/* .
 
 echo Enabling $1...
 sleep 2
-a2ensite -q $1.conf
+a2ensite -q $1
 service apache2 reload
 
 echo 'Cleanup...'
