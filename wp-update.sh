@@ -7,10 +7,10 @@ case $input in
     * ) echo "Invalid input, aborting.";;
 esac
 
-file="/etc/apache2/sites-available/$1.conf"
+file="/etc/apache2/sites-available/$1"
 if [ ! -f "$file" ]
 then
-    echo "$file not found."
+    echo "Vhost file $file not found."
     echo "Update aborted."
     exit 1
 fi
