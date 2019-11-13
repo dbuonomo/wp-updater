@@ -44,6 +44,7 @@ sleep 2
 a2dissite -q $1
 service apache2 reload
 
+echo Updating Wordpress...
 rm -rf wp-admin wp-includes
 cp -rf download/wordpress/* .
 
