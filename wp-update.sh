@@ -1,12 +1,5 @@
 #!/bin/sh
 
-read -p "Backup your Wordpress site before proceeding! Do you wish to continue (y/n)? " input
-case $input in
-    [Yy]* ) break;;
-    [Nn]* ) exit;;
-    * ) echo "Invalid input, aborting.";;
-esac
-
 file="/etc/apache2/sites-available/$1"
 if [ ! -f "$file" ]
 then
@@ -14,6 +7,13 @@ then
     echo "Update aborted."
     exit 1
 fi
+
+read -p "Backup your Wordpress site before proceeding! Do you wish to continue (y/n)? " input
+case $input in
+    [Yy]* ) break;;
+    [Nn]* ) exit;;
+    * ) echo "Invalid input, aborting.";;
+esac
 
 if [ ! -d "wp-includes" ]; then
     echo This doesn\'t appear to be a Wordpress root directory.
