@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#vhosts=`grep -l "ServerName[[:blank:]].*$1" /etc/apache2/sites-available/*`
 file="/etc/apache2/sites-available/$1"
 if [ ! -f "$file" ]
 then
@@ -41,6 +42,7 @@ sleep 5
 
 echo Disabling $1...
 sleep 2
+#a2dissite -q $vhosts
 a2dissite -q $1
 service apache2 reload
 
@@ -50,6 +52,7 @@ cp -rf download/wordpress/* .
 
 echo Enabling $1...
 sleep 2
+#a2ensite -q $vhosts
 a2ensite -q $1
 service apache2 reload
 
