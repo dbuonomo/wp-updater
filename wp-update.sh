@@ -9,18 +9,15 @@ while true; do
     esac
 done
 
-#vhosts=`grep -l "ServerName[[:blank:]].*$1" /etc/apache2/sites-available/*`
-file="/etc/apache2/sites-available/$1"
-if [ ! -f "$file" ]
+vhosts=`grep -l "ServerName[[:blank:]].*$1" /etc/apache2/sites-available/*`
+if [ -z "$vhosts" ]
 then
-    echo "Vhost file $file not found."
-    echo "Update aborted."
+    echo "No matching vhost files, exiting..."
     exit 1
 fi
 
 if [ ! -d "wp-includes" ]; then
-    echo This doesn\'t appear to be a Wordpress root directory.
-    echo "Update aborted."
+    echo This doesn\'t appear to be a Wordpress root directory, exiting....
     exit 1
 fi
 
@@ -46,8 +43,10 @@ sleep 5
 
 echo Disabling $1...
 sleep 2
-#a2dissite -q $vhosts
-a2dissite -q $1
+for vhost in $vhosts; do
+    #a2dissite -q $(basename -- "$vhost")
+    a2dissite $(basename -- "$vhost")
+done
 service apache2 reload
 
 echo Updating Wordpress...
@@ -55,9 +54,10 @@ rm -rf wp-admin wp-includes
 cp -rf wp-download/wordpress/* .
 
 echo Enabling $1...
-sleep 2
-#a2ensite -q $vhosts
-a2ensite -q $1
+for vhost in $vhosts; do
+    #a2ensite -q $(basename -- "$vhost")
+    a2ensite $(basename -- "$vhost")
+done
 service apache2 reload
 
 echo 'Cleanup...'
@@ -66,3 +66,4 @@ rm -rf latest.zip wp-download
 echo wp-config.php not updated. You must manually diff and merge any new changes from wp-config-sample.php.
 echo Update complete.
 exit 0
+
