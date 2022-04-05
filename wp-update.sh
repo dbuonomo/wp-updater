@@ -22,7 +22,7 @@ if [ ! -d "wp-includes" ]; then
 fi
 
 echo "Matching vhost files..."
-echo $vhosts
+echo $vhosts | tr " " "\n"
 
 echo Downloading Wordpress...
 wget -q https://wordpress.org/latest.zip
