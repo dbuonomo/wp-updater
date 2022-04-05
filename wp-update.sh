@@ -21,6 +21,9 @@ if [ ! -d "wp-includes" ]; then
     exit 1
 fi
 
+echo "Matching vhost files..."
+echo $vhosts
+
 echo Downloading Wordpress...
 wget -q https://wordpress.org/latest.zip
 mkdir -p wp-download
